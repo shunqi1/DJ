@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BEAT MASTERS - Элитные DJ в Москве</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background: rgba(0, 0, 0, 0.9);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><defs><pattern id="music" patternUnits="userSpaceOnUse" width="40" height="40"><circle cx="20" cy="20" r="3" fill="rgba(255,255,255,0.1)"/></pattern></defs><rect width="1200" height="800" fill="url(%23music)"/></svg>');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .hero-content h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero-content p {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            animation: fadeInUp 1s ease 0.3s both;
+        }
+
+        .cta-button {
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            color: #fff;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            animation: fadeInUp 1s ease 0.6s both;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .section {
+            padding: 5rem 0;
+        }
+
+        .section h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .dj-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .dj-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .dj-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+
+        .dj-avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            margin: 0 auto 1rem;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            font-weight: bold;
+        }
+
+        .dj-name {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: #fff;
+        }
+
+        .dj-genre {
+            color: #ccc;
+            margin-bottom: 1rem;
+        }
+
+        .dj-price {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #4ecdc4;
+            margin-bottom: 1rem;
+        }
+
+        .book-btn {
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            color: #fff;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+        }
+
+        .book-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        .booking-form {
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            padding: 2rem;
+            max-width: 900px;
+            width: 90vw;
+            max-height: 80vh;
+            overflow-y: auto;
+            margin: 0 auto;
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 2000;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .form-row .form-group {
+            margin-bottom: 0;
+        }
+
+        .form-group-full {
+            grid-column: 1 / -1;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #fff;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            color: #fff;
+            font-size: 1rem;
+        }
+
+        .form-group select {
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+        }
+
+        .form-group select option {
+            background: rgba(30, 30, 30, 0.95);
+            color: #fff;
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: #ccc;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #4ecdc4;
+            box-shadow: 0 0 10px rgba(78, 205, 196, 0.3);
+        }
+
+        .form-group input[readonly] {
+            background: rgba(255, 255, 255, 0.05);
+            cursor: not-allowed;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 1500;
+            display: none;
+        }
+
+        .services {
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        footer {
+            background: rgba(0, 0, 0, 0.9);
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            color: #4ecdc4;
+            margin-bottom: 1rem;
+        }
+
+        .footer-section p,
+        .footer-section a {
+            color: #ccc;
+            text-decoration: none;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .footer-section a:hover {
+            color: #fff;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero-content p {
+                font-size: 1.2rem;
+            }
+            
+            .dj-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .booking-form {
+                max-width: 95vw;
+                padding: 1.5rem;
+            }
+            
+            .form-row {
+                grid-template-columns: 1fr;
+                gap: 0;
+            }
+            
+            .form-row .form-group {
+                margin-bottom: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo">BEAT MASTERS</div>
+            <ul class="nav-links">
+                <li><a href="#home">Главная</a></li>
+                <li><a href="#djs">DJ</a></li>
+                <li><a href="#services">Услуги</a></li>
+                <li><a href="#contact">Контакты</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>ЭЛИТНЫЕ DJ МОСКВЫ</h1>
+                <p>Превратим ваше мероприятие в незабываемый праздник</p>
+                <a href="#djs" class="cta-button">ЗАБРОНИРОВАТЬ DJ</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="djs" class="section">
+        <div class="container">
+            <h2>Наши DJ</h2>
+            <div class="dj-grid">
+                <div class="dj-card">
+                    <div class="dj-avatar">AL</div>
+                    <div class="dj-name">DJ ALEX</div>
+                    <div class="dj-genre">House • Tech House • Progressive</div>
+                    <div class="dj-price">от 50 000 ₽</div>
+                    <button class="book-btn" onclick="openBookingForm('DJ ALEX')">Забронировать</button>
+                </div>
+                
+                <div class="dj-card">
+                    <div class="dj-avatar">MX</div>
+                    <div class="dj-name">DJ MATRIX</div>
+                    <div class="dj-genre">EDM • Dubstep • Trap</div>
+                    <div class="dj-price">от 45 000 ₽</div>
+                    <button class="book-btn" onclick="openBookingForm('DJ MATRIX')">Забронировать</button>
+                </div>
+                
+                <div class="dj-card">
+                    <div class="dj-avatar">LN</div>
+                    <div class="dj-name">DJ LUNA</div>
+                    <div class="dj-genre">Deep House • Nu-Disco • Chill</div>
+                    <div class="dj-price">от 40 000 ₽</div>
+                    <button class="book-btn" onclick="openBookingForm('DJ LUNA')">Забронировать</button>
+                </div>
+                
+                <div class="dj-card">
+                    <div class="dj-avatar">VB</div>
+                    <div class="dj-name">DJ VIBE</div>
+                    <div class="dj-genre">Hip-Hop • R&B • Pop</div>
+                    <div class="dj-price">от 35 000 ₽</div>
+                    <button class="book-btn" onclick="openBookingForm('DJ VIBE')">Забронировать</button>
+                </div>
+                
+                <div class="dj-card">
+                    <div class="dj-avatar">ST</div>
+                    <div class="dj-name">DJ STORM</div>
+                    <div class="dj-genre">Trance • Psytrance • Techno</div>
+                    <div class="dj-price">от 55 000 ₽</div>
+                    <button class="book-btn" onclick="openBookingForm('DJ STORM')">Забронировать</button>
+                </div>
+                
+                <div class="dj-card">
+                    <div class="dj-avatar">RV</div>
+                    <div class="dj-name">DJ RAVE</div>
+                    <div class="dj-genre">Hardcore • Hardstyle • Gabber</div>
+                    <div class="dj-price">от 48 000 ₽</div>
+                    <button class="book-btn" onclick="openBookingForm('DJ RAVE')">Забронировать</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="services" class="section services">
+        <div class="container">
+            <h2>Наши услуги</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">🎧</div>
+                    <h3>DJ сеты</h3>
+                    <p>Профессиональные DJ с собственным оборудованием</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🎤</div>
+                    <h3>Ведущие</h3>
+                    <p>Харизматичные ведущие для любых мероприятий</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🎵</div>
+                    <h3>Звук и свет</h3>
+                    <p>Профессиональное звуковое и световое оборудование</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🎊</div>
+                    <h3>Спецэффекты</h3>
+                    <p>Дым, конфетти, пиротехника и другие эффекты</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Контакты</h3>
+                    <p>📞 +7 (495) 123-45-67</p>
+                    <p>📧 info@beatmasters.ru</p>
+                    <p>📍 Москва, ул. Тверская, 15</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Режим работы</h3>
+                    <p>Пн-Пт: 10:00 - 22:00</p>
+                    <p>Сб-Вс: 12:00 - 20:00</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Соцсети</h3>
+                    <a href="#">Instagram</a>
+                    <a href="#">VKontakte</a>
+                    <a href="#">Telegram</a>
+                </div>
+            </div>
+            <p>&copy; 2024 BEAT MASTERS. Все права защищены.</p>
+        </div>
+    </footer>
+
+    <div class="overlay" onclick="closeBookingForm()"></div>
+    
+    <div class="booking-form" id="bookingForm">
+        <button class="close-btn" onclick="closeBookingForm()">&times;</button>
+        <h2>Бронирование DJ</h2>
+        <form onsubmit="submitBooking(event)">
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="djSelect">Выбранный DJ:</label>
+                    <select id="djSelect" name="djName" required>
+                        <option value="">Выберите DJ</option>
+                        <option value="DJ ALEX">DJ ALEX - House • Tech House • Progressive (от 50 000 ₽)</option>
+                        <option value="DJ MATRIX">DJ MATRIX - EDM • Dubstep • Trap (от 45 000 ₽)</option>
+                        <option value="DJ LUNA">DJ LUNA - Deep House • Nu-Disco • Chill (от 40 000 ₽)</option>
+                        <option value="DJ VIBE">DJ VIBE - Hip-Hop • R&B • Pop (от 35 000 ₽)</option>
+                        <option value="DJ STORM">DJ STORM - Trance • Psytrance • Techno (от 55 000 ₽)</option>
+                        <option value="DJ RAVE">DJ RAVE - Hardcore • Hardstyle • Gabber (от 48 000 ₽)</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="clientName">Ваше имя:</label>
+                    <input type="text" id="clientName" name="clientName" required placeholder="Введите ваше имя">
+                </div>
+            </div>
+            
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="phone">Телефон:</label>
+                    <input type="tel" id="phone" name="phone" required placeholder="+7 (999) 123-45-67">
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required placeholder="email@example.com">
+                </div>
+            </div>
+            
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="eventDate">Дата мероприятия:</label>
+                    <input type="date" id="eventDate" name="eventDate" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="eventTime">Время начала:</label>
+                    <input type="time" id="eventTime" name="eventTime" required>
+                </div>
+            </div>
+            
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="duration">Продолжительность (часы):</label>
+                    <select id="duration" name="duration" required>
+                        <option value="">Выберите продолжительность</option>
+                        <option value="2">2 часа</option>
+                        <option value="3">3 часа</option>
+                        <option value="4">4 часа</option>
+                        <option value="5">5 часов</option>
+                        <option value="6">6 часов</option>
+                        <option value="8">8 часов</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="eventType">Тип мероприятия:</label>
+                    <select id="eventType" name="eventType" required>
+                        <option value="">Выберите тип мероприятия</option>
+                        <option value="wedding">Свадьба</option>
+                        <option value="birthday">День рождения</option>
+                        <option value="corporate">Корпоратив</option>
+                        <option value="club">Клубная вечеринка</option>
+                        <option value="private">Приватная вечеринка</option>
+                        <option value="other">Другое</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="location">Место проведения:</label>
+                    <input type="text" id="location" name="location" required placeholder="Адрес в Москве">
+                </div>
+                
+                <div class="form-group">
+                    <label for="guests">Количество гостей:</label>
+                    <input type="number" id="guests" name="guests" min="10" max="1000" required placeholder="Примерное количество">
+                </div>
+            </div>
+            
+            <div class="form-group form-group-full">
+                <label for="comments">Дополнительные пожелания:</label>
+                <textarea id="comments" name="comments" rows="3" placeholder="Опишите ваши пожелания к музыке, атмосфере и т.д."></textarea>
+            </div>
+            
+            <button type="submit" class="cta-button" style="width: 100%;">Отправить заявку</button>
+        </form>
+    </div>
+
+    <script>
+        function openBookingForm(djName) {
+            document.getElementById('djSelect').value = djName;
+            document.getElementById('bookingForm').style.display = 'block';
+            document.querySelector('.overlay').style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeBookingForm() {
+            document.getElementById('bookingForm').style.display = 'none';
+            document.querySelector('.overlay').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        function submitBooking(event) {
+            event.preventDefault();
+            
+            const formData = new FormData(event.target);
+            const bookingData = {};
+            
+            for (let [key, value] of formData.entries()) {
+                bookingData[key] = value;
+            }
+            
+            // Симуляция отправки данных
+            alert(`Спасибо за заявку! Мы свяжемся с вами в ближайшее время.\n\nДетали бронирования:\nDJ: ${bookingData.djName}\nДата: ${bookingData.eventDate}\nВремя: ${bookingData.eventTime}\nМесто: ${bookingData.location}`);
+            
+            closeBookingForm();
+            event.target.reset();
+        }
+
+        // Плавная прокрутка к секциям
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Анимация появления элементов при прокрутке
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.dj-card, .service-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+
+        // Установка минимальной даты для формы бронирования
+        document.getElementById('eventDate').min = new Date().toISOString().split('T')[0];
+    </script>
+</body>
+</html>
